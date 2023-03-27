@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <script src="index.js" defer></script>
+
+    <script>
+      let themeCheckBox
+      let themeSwitch
+
+      const darkColorSchemePreference = matchMedia('(prefers-color-scheme: dark)')
+      let prefersDarkMode = darkColorSchemePreference.matches
+
+      addEventListener('DOMContentLoaded', () => {
+        themeCheckBox = document.querySelector('#themetoggle')
+        themeSwitch = document.querySelector('#switch')
+
+        themeCheckBox.checked = prefersDarkMode
+
+        toggleDarkMode()
+
+        themeSwitch.addEventListener('click', () => {
+          prefersDarkMode = themeCheckBox.checked
+          toggleDarkMode()
+        })
+      })
+
+      darkColorSchemePreference.onchange = function () {
+        prefersDarkMode = darkColorSchemePreference.matches
+        toggleDarkMode()
+      }
+
+      function toggleDarkMode() {
+        if (prefersDarkMode) {
+          document.documentElement.classList.add('dark')
+          themeSwitch.firstElementChild.classList.add('translate-x-[20px]')
+        } else {
+          document.documentElement.classList.remove('dark')
+          themeSwitch.firstElementChild.classList.remove('translate-x-[20px]')
+        }
+      }
+    </script>
+  </head>
+
+  <body class="min-h-screen font-inter p-5 md:py-[58px] bg-white dark:bg-black-1 dark:text-white">
+    <div class="max-w-[736px] m-auto md:w-[689px] xl:w-[736px]">
+      <div class="h-8 flex justify-between items-center mb-6 md:mb-[41px] xl:mb-[51px]">
+        <!--? Logo -->
+        <img class="h-[32px]" src="/assets/images/logo.svg" alt="dictionary logo" />
+
+        <div class="h-full flex items-center gap-4 relative">
+          <!--? Font change select -->
+          <div class="text-mbody-m md:text-body-m font-bold">
+            <input class="peer" type="checkbox" name="font-changer" id="font-select" hidden />
+            <label for="font-select" class="flex cursor-pointer">
+              <span class="mr-4" id="current-font">Sans Serif</span>
+              <img class="" src="/assets/images/arrow-down.svg" alt="down arrow" />
+            </label>
+
+            <!--? Font options -->
+            <ul
+              id="font-options"
+              class="absolute top-[42px] -left-6 w-[150px] md:w-[183px] p-6 rounded-2xl bg-white dark:bg-black-1 dark shadow-[1px_1px_10px] shadow-[hsl(0_0%_0%/0.25)] dark:shadow-purple hidden peer-checked:block z-10"
+            >
+              <li class="font-inter mb-4 cursor-pointer hover:text-purple active:opacity-60">
+                Sans Serif
+              </li>
+              <li class="font-lora mb-4 cursor-pointer hover:text-purple active:opacity-60">
+                Serif
+              </li>
+              <li class="font-inconsolata cursor-pointer hover:text-purple active:opacity-60">
+                Mono
+              </li>
+            </ul>
+          </div>
+
+          <div class="h-full w-[1px] bg-gray-2"></div>
+
+          <!--? Switch -->
+          <label
+            id="switch"
+            for="themetoggle"
+            class="w-[40px] h-[20px] px-[3px] flex items-center bg-gray-1 dark:bg-purple rounded-2xl cursor-pointer"
+          >
+            <!--? Track -->
+            <div
+              class="block w-[14px] h-[14px] bg-white rounded-full transition-transform duration-150 ease-in-out"
+            ></div>
+            <input type="checkbox" id="themetoggle" hidden aria-hidden="true" />
+          </label>
+
+          <!--? Moon Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+            <path
+              class="dark:stroke-purple"
+              fill="none"
+              stroke="#838383"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M1 10.449a10.544 10.544 0 0 0 19.993 4.686C11.544 15.135 6.858 10.448 6.858 1A10.545 10.545 0 0 0 1 10.449Z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <form class="group md:mb-[13px] lg:mb-[13px]" novalidate>
+        <!--? Search Input -->
+        <div class="relative flex items-center">
+          <input
+            class="relative w-full h-12 md:h-16 text-black-3 dark:text-white text-mheading-s md:text-heading-s font-bold px-6 py-4 bg-gray-3 dark:bg-black-2 rounded-2xl dark:placeholder:text-[hsl(0deg_0%_100%_/_25%)] placeholder:text-[hsl(0deg_0%_18%_/_25%)] placeholder:font-[700] outline-none outline-[1px] focus:outline-purple outline-offset-0 group-[.invalid]:outline-red"
+            type="text"
+            placeholder="Search for any word..."
+            required
+          />
+          <button
+            class="absolute right-6 grid place-items-center hover:bg-[#dfdddd] dark:hover:bg-[#403f3f] w-8 h-8 rounded-md"
+          >
+            <img src="./assets/images/search.svg" alt="search icon" />
+          </button>
+        </div>
+        <p
+          class="text-red text-mheading-s md:text-heading-s mt-2 invisible group-[.invalid]:visible"
+        >
+          Whoops, can’t be empty…
+        </p>
+      </form>
+
+      <div class="definitions-wrapper"></div>
+    </div>
+  </body>
+  <script></script>
+</html>

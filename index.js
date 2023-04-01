@@ -176,7 +176,7 @@ function parseSearchResults(searchResults) {
   const sourceURL = searchResults[0].sourceUrls[0]
 
   for (let result of searchResults) {
-    if (result.phonetics) {
+    if (result.phonetics.length) {
       for (let p of result.phonetics) {
         if (p.text) {
           phonetic.text = p.text
@@ -188,7 +188,7 @@ function parseSearchResults(searchResults) {
         }
       }
     } else {
-      phonetic.text = result.phonetic
+      phonetic.text = result.phonetic || ''
     }
 
     meanings.push(...result.meanings)

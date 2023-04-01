@@ -6,8 +6,8 @@ searchForm.addEventListener('submit', evt => {
 
   if (searchInput.validity.valueMissing || !Boolean(searchInput.value.trim())) {
     searchForm.classList.add('invalid')
-
     searchInput.focus()
+
     searchInput.addEventListener(
       'input',
       evt => {
@@ -22,6 +22,7 @@ searchForm.addEventListener('submit', evt => {
   search(searchInput.value)
   searchInput.blur()
 })
+
 async function search(word) {
   const { definitions, wordNotFound } = await fetchDefinitions(word)
 
@@ -126,12 +127,17 @@ function renderDefinitions(searchResults) {
             </ul>
           </div>
 
-          <!--? Synonyms -->
+          <!-- Synonyms -->
           ${
             meaning.synonyms.length
               ? `<div class="text-mheading-s md:text-heading-s">
-                  <h3 class="inline-block text-gray-1">Synonyms</h3>
-                  <span class="text-purple font-bold">${meaning.synonyms.join(', ')}</span>
+                  <h3 class="inline-block text-gray-1 mr-6">Synonyms</h3>
+                  <span class="text-purple font-bold">${meaning.synonyms
+                    .map(
+                      s =>
+                        `<span class="underline underline-offset-[3px] cursor-pointer hover:opacity-70" onclick="search('${s}'); searchInput.value = '${s}'">${s}</span>`
+                    )
+                    .join(', ')}</span>
                 </div>`
               : ''
           }

@@ -82,12 +82,24 @@ function renderDefinitions(searchResults) {
       </div> 
 
       <!--? Play button -->
-      <button class="w-12 h-12 md:w-[75px] md:h-[75px]" onclick="this.firstElementChild.play()">
+      <button class="active:opacity-30" title="play" onclick="this.firstElementChild.play()">
         <audio>
           <source src="${parsedDefinitions.phonetic.audio}" type="audio/mp3" />
         </audio>
-        <img class="" src="./assets/images/play.svg" alt="" />
-      </button>
+        <svg
+          class="group w-12 h-12 md:w-auto md:h-auto"
+          xmlns="http://www.w3.org/2000/svg"
+          width="75"
+          height="75"
+          viewBox="0 0 75 75"
+        >
+          <g fill="#A445ED" fill-rule="evenodd">
+            <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" class="group-hover:opacity-100" />
+            <path d="M29 27v21l21-10.5z" class="group-hover:fill-white" />
+          </g>
+        </svg>
+    </button>
+      
     </div>
 
     <!--? Meaning Section -->

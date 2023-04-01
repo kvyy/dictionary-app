@@ -52,7 +52,7 @@
 
   <body class="min-h-screen font-inter p-5 md:py-[58px] bg-white dark:bg-black-1 dark:text-white">
     <div class="max-w-[736px] m-auto md:w-[689px] xl:w-[736px]">
-      <div class="h-8 flex justify-between items-center mb-6 md:mb-[41px] xl:mb-[51px]">
+      <hesder class="h-8 flex justify-between items-center mb-6 md:mb-[41px] xl:mb-[51px]">
         <!--? Logo -->
         <img class="h-[32px]" src="/assets/images/logo.svg" alt="dictionary logo" />
 
@@ -91,10 +91,10 @@
             class="w-[40px] h-[20px] px-[3px] flex items-center bg-gray-1 dark:bg-purple rounded-2xl cursor-pointer"
           >
             <!--? Track -->
-            <div
+            <span
               class="block w-[14px] h-[14px] bg-white rounded-full transition-transform duration-150 ease-in-out"
-            ></div>
-            <input type="checkbox" id="themetoggle" hidden aria-hidden="true" />
+            ></span>
+            <input type="checkbox" id="themetoggle" hidden />
           </label>
 
           <!--? Moon Icon -->
@@ -110,7 +110,7 @@
             />
           </svg>
         </div>
-      </div>
+      </hesder>
 
       <form class="group md:mb-[13px] lg:mb-[13px]" novalidate>
         <!--? Search Input -->
@@ -134,7 +134,7 @@
         </p>
       </form>
 
-      <div class="definitions-wrapper"></div>
+      <main class="definitions-wrapper"></main>
     </div>
   </body>
   <script></script>

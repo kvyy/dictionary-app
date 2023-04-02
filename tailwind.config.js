@@ -16,9 +16,9 @@ module.exports = {
       red: 'hsl(0 100% 66%)'
     },
     fontFamily: {
-      inter: 'Inter',
-      lora: 'Lora',
-      inconsolata: 'Inconsolata'
+      inter: ['Inter', 'sans-serif'],
+      lora: ['Lora', 'serif'],
+      inconsolata: ['Inconsolata', 'monospace']
     },
     fontSize: {
       'mbody-s': ['0.875rem', '17px'],

@@ -1095,6 +1095,10 @@ video {
     height: 4rem;
   }
 
+  .md\:h-\[36\.5px\] {
+    height: 36.5px;
+  }
+
   .md\:h-auto {
     height: auto;
   }

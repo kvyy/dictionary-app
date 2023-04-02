@@ -62,12 +62,36 @@ const fontClasses = {
 let currentFontClass = 'font-inter'
 
 fontOptions.addEventListener('click', evt => {
-  document.body.classList.remove(currentFontClass)
-  currentFontClass = fontClasses[evt.target.innerText]
-  currentFont.innerText = evt.target.innerText
-  document.body.classList.add(currentFontClass)
-  fontSelectCheckbox.checked = false
+  if (evt.target.matches('li')) {
+    document.body.classList.remove(currentFontClass)
+    currentFontClass = fontClasses[evt.target.innerText]
+    document.body.classList.add(currentFontClass)
+    currentFont.innerText = evt.target.innerText
+    fontSelectCheckbox.checked = false
+  }
 })
+
+fontSelectCheckbox.addEventListener('change', () => {
+  // console.log(fontSelectCheckbox.checked)
+  if (fontSelectCheckbox.checked) {
+    document.addEventListener(
+      'click',
+      evt => {
+        console.log(evt.target)
+        if (!evt.target.matches('.fc')) {
+          fontSelectCheckbox.checked = false
+        }
+      },
+      { once: true }
+    )
+  }
+})
+
+// document.addEventListener('click', evt => {
+//   if (!evt.target.matches('#font-options')) {
+//     fontSelectCheckbox.checked = false
+//   }
+// })
 
 function renderDefinitions(searchResults) {
   const parsedDefinitions = parseSearchResults(searchResults)

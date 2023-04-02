@@ -52,7 +52,7 @@
 
   <body class="min-h-screen font-inter p-5 md:py-[58px] bg-white dark:bg-black-1 dark:text-white">
     <div class="max-w-[736px] m-auto md:w-[689px] xl:w-[736px]">
-      <header class="h-8 flex justify-between items-center mb-6 md:mb-[41px] xl:mb-[51px]">
+      <header class="h-8 flex justify-between items-center mb-6 md:mb-[41px] xl:mb-[51.5px]">
         <!--? Logo -->
         <img class="h-[32px]" src="/assets/images/logo.svg" alt="dictionary logo" />
 
@@ -60,23 +60,27 @@
           <!--? Font change select -->
           <div class="text-mbody-m md:text-body-m font-bold">
             <input class="peer" type="checkbox" name="font-changer" id="font-select" hidden />
-            <label for="font-select" class="flex cursor-pointer">
-              <span class="mr-4" id="current-font">Sans Serif</span>
-              <img class="" src="/assets/images/arrow-down.svg" alt="down arrow" />
+            <label for="font-select" class="fc flex cursor-pointer">
+              <span class="mr-4 pointer-events-none" id="current-font">Sans Serif</span>
+              <img
+                class="pointer-events-none"
+                src="/assets/images/arrow-down.svg"
+                alt="down arrow"
+              />
             </label>
 
             <!--? Font options -->
             <ul
               id="font-options"
-              class="absolute top-[42px] -left-6 w-[150px] md:w-[183px] p-6 rounded-2xl bg-white dark:bg-black-1 dark shadow-[1px_1px_10px] shadow-[hsl(0_0%_0%/0.25)] dark:shadow-purple hidden peer-checked:block z-10"
+              class="fc absolute top-[42px] -left-6 w-[150px] md:w-[183px] p-6 rounded-2xl bg-white dark:bg-black-1 dark shadow-[1px_1px_10px] shadow-[hsl(0_0%_0%/0.25)] dark:shadow-purple hidden peer-checked:block z-10"
             >
-              <li class="font-inter mb-4 cursor-pointer hover:text-purple active:opacity-60">
+              <li class="fc font-inter mb-4 cursor-pointer hover:text-purple active:opacity-60">
                 Sans Serif
               </li>
-              <li class="font-lora mb-4 cursor-pointer hover:text-purple active:opacity-60">
+              <li class="fc font-lora mb-4 cursor-pointer hover:text-purple active:opacity-60">
                 Serif
               </li>
-              <li class="font-inconsolata cursor-pointer hover:text-purple active:opacity-60">
+              <li class="fc font-inconsolata cursor-pointer hover:text-purple active:opacity-60">
                 Mono
               </li>
             </ul>
@@ -137,5 +141,4 @@
       <main class="definitions-wrapper"></main>
     </div>
   </body>
-  <script></script>
 </html>

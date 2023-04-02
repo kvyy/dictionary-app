@@ -11,7 +11,7 @@ searchForm.addEventListener('submit', evt => {
 
     searchInput.addEventListener(
       'input',
-      evt => {
+      () => {
         searchForm.classList.remove('invalid')
       },
       { once: true }
@@ -72,7 +72,6 @@ fontOptions.addEventListener('click', evt => {
 })
 
 fontSelectCheckbox.addEventListener('change', () => {
-  // console.log(fontSelectCheckbox.checked)
   if (fontSelectCheckbox.checked) {
     document.addEventListener(
       'click',
@@ -86,12 +85,6 @@ fontSelectCheckbox.addEventListener('change', () => {
     )
   }
 })
-
-// document.addEventListener('click', evt => {
-//   if (!evt.target.matches('#font-options')) {
-//     fontSelectCheckbox.checked = false
-//   }
-// })
 
 function renderDefinitions(searchResults) {
   const parsedDefinitions = parseSearchResults(searchResults)

@@ -1,5 +1,6 @@
 const searchForm = document.querySelector('form')
 const searchInput = document.querySelector('input[type="text"]')
+let currentWord = ''
 
 searchForm.addEventListener('submit', evt => {
   evt.preventDefault()
@@ -19,8 +20,11 @@ searchForm.addEventListener('submit', evt => {
     return
   }
 
+  if (searchInput.value.trim() === currentWord) return
+
   search(searchInput.value)
   searchInput.blur()
+  currentWord = searchInput.value.trim()
 })
 
 async function search(word) {
@@ -77,11 +81,14 @@ function renderDefinitions(searchResults) {
       <div class="flex flex-col">
         <h1 class="text-mheading-l md:text-heading-l font-bold mb-2">${parsedDefinitions.word}</h1>
         <h2 class="text-purple text-mheading-m md:text-heading-m">${
-          parsedDefinitions.phonetic.text
+          parsedDefinitions.phonetic.text || ''
         }</h2>
       </div> 
 
       <!--? Play button -->
+      ${
+        parsedDefinitions.phonetic.audio
+          ? `
       <button class="active:opacity-30" title="play" onclick="this.firstElementChild.play()">
         <audio>
           <source src="${parsedDefinitions.phonetic.audio}" type="audio/mp3" />
@@ -98,7 +105,10 @@ function renderDefinitions(searchResults) {
             <path d="M29 27v21l21-10.5z" class="group-hover:fill-white" />
           </g>
         </svg>
-    </button>
+      </button>`
+          : ''
+      }
+      
       
     </div>
 
@@ -193,22 +203,18 @@ function parseSearchResults(searchResults) {
   const meanings = []
   const sourceURL = searchResults[0].sourceUrls[0]
 
-  for (let result of searchResults) {
-    if (result.phonetics.length) {
-      for (let p of result.phonetics) {
-        if (p.text) {
-          phonetic.text = p.text
+  if (searchResults[0].phonetics.length) {
+    for (let p of searchResults[0].phonetics) {
+      phonetic.text = p.text
 
-          if (p.audio) {
-            phonetic.audio = p.audio
-            break
-          }
-        }
+      if (p.audio) {
+        phonetic.audio = p.audio
+        break
       }
-    } else {
-      phonetic.text = result.phonetic || ''
     }
+  }
 
+  for (let result of searchResults) {
     meanings.push(...result.meanings)
   }
 
